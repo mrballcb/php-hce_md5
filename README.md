@@ -13,18 +13,18 @@ Usage:
 <pre>
 require "hce_md5.class.php";
 
+/* Instantiate a new object */
 $md5 = new hce_md5($pubKey, $privKey);
-/* Returns a binary blob 16 bytes long, but most apps/urls tend
- * to deal with the base64 encoded version, so convert it. */
+
+/* Returns a binary blob 16 bytes long, but most apps/urls tend to
+ * deal with the base64 encoded version, so convert it afterwards. */
 $encrypted = $md5->hce_block_encrypt($plaintext);
 $b64encrypted = base64_encode($encrypted);
 
-$md5 = new hce_md5($pubKey, $privKey);
-/* Assuming the incoming value is base64, convert it to a binary
- * blob and decrypt it.  The returned value will not be base64
- * encoded. */
+/* Assuming the incoming value is base64, convert it to a binary blob
+ * and decrypt it. The returned value will not be base64 encoded. */
 $to_decrypt = base64_decode($b64encrypted);
 $decrypted = $md5->hce_block_decrypt($to_decrypt);
 
-// At this point, $decrypted is equal to original $plaintext
+/* At this point, $decrypted is equal to original $plaintext */
 </pre>
